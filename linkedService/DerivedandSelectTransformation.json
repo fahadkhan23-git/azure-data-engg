@@ -1,0 +1,12 @@
+{
+	"name": "DerivedandSelectTransformation",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=fahadstg;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDUwRUFGNEZGLTY1QUMtNDE3Qi1CQURGLTQyN0Y3MUQ5OTEzQV8wNDQwYTFmOS03OTZkLTQzYTAtOGMzOS1hYzE1MTc5MjhlNWYiDQp9"
+		}
+	}
+}

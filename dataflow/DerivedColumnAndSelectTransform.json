@@ -1,0 +1,59 @@
+{
+	"name": "DerivedColumnAndSelectTransform",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "emp1tbl",
+						"type": "DatasetReference"
+					},
+					"name": "employee"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "output"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DeductedSalColumn"
+				},
+				{
+					"name": "DeleteSalaryColumn"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Emp_ID as integer,",
+				"          Name as string,",
+				"          Salary as integer,",
+				"          Address as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> employee",
+				"employee derive(Deducted_Salary = Salary-5000,",
+				"          Name = upper(Name)) ~> DeductedSalColumn",
+				"DeductedSalColumn select(mapColumn(",
+				"          Emp_ID,",
+				"          Name,",
+				"          Address,",
+				"          Deducted_Salary",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> DeleteSalaryColumn",
+				"DeleteSalaryColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> output"
+			]
+		}
+	}
+}
